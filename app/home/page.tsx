@@ -1,5 +1,5 @@
-import { MainLayout } from '@/modules/shared/MainLayout'
+import { HomePage } from '@/modules/home/components/HomePage'
 
-export const HomeRoute = () => {
-  return <MainLayout />
+export default function HomeRoute() {
+  return <HomePage />
 }

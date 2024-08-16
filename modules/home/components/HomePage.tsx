@@ -1,6 +1,12 @@
 import React from 'react'
-import { Box } from '@chakra-ui/react'
+import { MainLayout } from '@/modules/shared/MainLayout'
+import { Header } from '@/modules/shared/Header'
 
 export const HomePage: React.FC = () => {
-  return <Box bg="main.primary">Olá, mundo</Box>
+  return (
+    <MainLayout>
+      <Header />
+      home page
+    </MainLayout>
+  )
 }
