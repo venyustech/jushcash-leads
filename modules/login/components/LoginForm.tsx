@@ -22,21 +22,17 @@ import { useForm } from 'react-hook-form'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { useRouter } from 'next/navigation'
 import { LoginFormData } from '../types/indes'
+import { useLoginUser } from '../hooks/loginUser'
 
 const LoginForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false)
-  const router = useRouter()
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm<LoginFormData>()
-
-  const onSubmit = (data: LoginFormData) => {
-    console.log(data)
-    // Faça o login
-    // router.push('/home')
-  }
+  const userLogin = useLoginUser()
+  const onSubmit = (data: LoginFormData) => userLogin.mutate(data)
 
   return (
     <Flex

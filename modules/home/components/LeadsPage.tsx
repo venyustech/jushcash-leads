@@ -1,59 +1,24 @@
-'use client'
-
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, Heading, Flex, Button } from '@chakra-ui/react'
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd'
 import { LeadFormModal } from './LeadFormModal'
 import { ViewLeadModal } from './ViewLeadFormModal'
 import { DroppableColumnProps, Lead, LeadsState } from '../types'
 
-const initialLeads: LeadsState = {
-  potential: [
-    { id: 'lead-1', content: 'Lead 1', email: 'lead1@example.com', phone: '123456789', opportunities: ['Todos'] },
-    {
-      id: 'lead-2',
-      content: 'Lead 2',
-      email: 'lead2@example.com',
-      phone: '987654321',
-      opportunities: ['Honorários Sucumbencias']
-    },
-    {
-      id: 'lead-3',
-      content: 'Lead 3',
-      email: 'lead3@example.com',
-      phone: '123123123',
-      opportunities: ['Crédito do Autos']
-    }
-  ],
-  confirmed: [],
-  analysis: []
-}
-
 const LeadsPage: React.FC = () => {
-  const [leads, setLeads] = useState<LeadsState>(initialLeads)
+  const [leads, setLeads] = useState<LeadsState>(() => {
+    const storedLeads = localStorage.getItem('leads')
+    return storedLeads ? JSON.parse(storedLeads) : { potential: [], confirmed: [], analysis: [] }
+  })
   const [isNewLeadModalOpen, setIsNewLeadModalOpen] = useState(false)
   const [isViewLeadModalOpen, setIsViewLeadModalOpen] = useState(false)
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
 
-  const onDragEnd = (result: DropResult) => {
-    const { source, destination } = result
-    if (!destination || source.droppableId === destination.droppableId) return
-    if (
-      (source.droppableId === 'potential' && destination.droppableId !== 'confirmed') ||
-      (source.droppableId === 'confirmed' && destination.droppableId !== 'analysis') ||
-      source.droppableId === 'analysis'
-    )
-      return
-    const sourceColumn = Array.from(leads[source.droppableId as keyof LeadsState])
-    const destColumn = Array.from(leads[destination.droppableId as keyof LeadsState])
-    const [movedItem] = sourceColumn.splice(source.index, 1)
-    destColumn.splice(destination.index, 0, movedItem)
-    setLeads({
-      ...leads,
-      [source.droppableId]: sourceColumn,
-      [destination.droppableId]: destColumn
-    })
-  }
+  useEffect(() => {
+    localStorage.setItem('leads', JSON.stringify(leads))
+  }, [leads])
+
+  const onDragEnd = dragReverseBlock(leads, setLeads)
 
   const handleAddLead = (data: Omit<Lead, 'id'>) => {
     const newLeadData: Lead = {
@@ -79,26 +44,7 @@ const LeadsPage: React.FC = () => {
 
   return (
     <Box width="100%" p={4}>
-      <Flex justifyContent="flex-end">
-        <Button
-          type="button"
-          width="fit-content"
-          mb={3}
-          paddingInline={8}
-          color="#FFFFFF"
-          bg="form.primary-button"
-          borderRadius="6px"
-          onClick={openNewLeadModal}
-          _hover={{
-            borderWidth: `1px`,
-            borderColor: 'form.primary-button',
-            color: 'form.primary-button',
-            backgroundColor: '#ffffff'
-          }}
-        >
-          + Novo Lead
-        </Button>
-      </Flex>
+      <NewLeadButton openNewLeadModal={openNewLeadModal} />
       <DragDropContext onDragEnd={onDragEnd}>
         <Flex>
           <DroppableColumn
@@ -152,7 +98,7 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ id, title, leads, onL
         <Box>
           {leads.map((lead, index) => (
             <Draggable key={lead.id} draggableId={lead.id} index={index}>
-              {(provided, snapshot) => (
+              {(provided) => (
                 <Box
                   ref={provided.innerRef}
                   {...provided.draggableProps}
@@ -186,5 +132,51 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ id, title, leads, onL
     )}
   </Droppable>
 )
+const NewLeadButton: React.FC<{ openNewLeadModal: () => void }> = ({ openNewLeadModal }) => {
+  return (
+    <Flex justifyContent="flex-end">
+      <Button
+        type="button"
+        width="fit-content"
+        mb={3}
+        paddingInline={8}
+        color="#FFFFFF"
+        bg="form.primary-button"
+        borderRadius="6px"
+        onClick={openNewLeadModal}
+        _hover={{
+          borderWidth: `1px`,
+          borderColor: 'form.primary-button',
+          color: 'form.primary-button',
+          backgroundColor: '#ffffff'
+        }}
+      >
+        + Novo Lead
+      </Button>
+    </Flex>
+  )
+}
+
+function dragReverseBlock(leads: LeadsState, setLeads: React.Dispatch<React.SetStateAction<LeadsState>>) {
+  return (result: DropResult) => {
+    const { source, destination } = result
+    if (!destination || source.droppableId === destination.droppableId) return
+    if (
+      (source.droppableId === 'potential' && destination.droppableId !== 'confirmed') ||
+      (source.droppableId === 'confirmed' && destination.droppableId !== 'analysis') ||
+      source.droppableId === 'analysis'
+    )
+      return
+    const sourceColumn = Array.from(leads[source.droppableId as keyof LeadsState])
+    const destColumn = Array.from(leads[destination.droppableId as keyof LeadsState])
+    const [movedItem] = sourceColumn.splice(source.index, 1)
+    destColumn.splice(destination.index, 0, movedItem)
+    setLeads({
+      ...leads,
+      [source.droppableId]: sourceColumn,
+      [destination.droppableId]: destColumn
+    })
+  }
+}
 
 export default LeadsPage

@@ -23,11 +23,11 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { RegisterFormData, registerValidator } from '../validators'
+import { useCreateUser } from '../hooks/createUser'
 
 export const RegisterForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -35,10 +35,9 @@ export const RegisterForm: React.FC = () => {
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerValidator)
   })
-
+  const createUser = useCreateUser()
   const onSubmit = (data: RegisterFormData) => {
-    console.log(data)
-    // router.push('/login');
+    createUser.mutate(data)
   }
 
   return (

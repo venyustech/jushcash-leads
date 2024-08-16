@@ -1,11 +1,10 @@
-import { Box, Flex } from '@chakra-ui/react'
-import { Header } from './Header'
+import { Text } from '@chakra-ui/react'
+import { MainLayout } from './MainLayout'
 
 export const RedirectingPage = () => {
   return (
-    <Flex height="100vh" width="100vw" direction="column" background="#00B4D8">
-      <Header />
-      <Box>loading...</Box>
-    </Flex>
+    <MainLayout>
+      <Text>Loading...</Text>
+    </MainLayout>
   )
 }
