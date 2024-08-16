@@ -3,7 +3,8 @@
 Sistema de gestão de leads desenvolvido com React, Next.js 14.2.5, e Chakra UI, atendendo às diretrizes e requisitos especificados no PDF do teste.
 
 ```bash
-Essa é apenas uma API de simulação, não é seguro colocar seus dados de senhas reais no projeto pois eles serão salvos no localStorage
+Essa é apenas uma API de simulação, não é seguro colocar seus dados de senhas
+reais no projeto pois eles serão salvos no localStorage
 ```
 
 ## Tecnologias
