@@ -6,12 +6,13 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Box
       minHeight="100vh"
+      height="100%"
       width="100vw"
       backgroundColor="main.primary"
       display="flex"
       alignItems="center"
       justifyContent="center"
-      paddingInline={12}
+      paddingBottom={20}
     >
       <Box
         width={{ base: '100vw', md: 'xl' }}

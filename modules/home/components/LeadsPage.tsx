@@ -87,11 +87,13 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ id, title, leads, onL
         boxShadow="lg"
       >
         <Heading
-          fontSize={{ base: '12px', md: '14px' }}
+          fontSize={{ base: '10px', md: '14px' }}
           display="flex"
           justifyContent="center"
           alignItems="center"
           height={'38px'}
+          overflow="hidden"
+          whiteSpace="nowrap"
         >
           {title}
         </Heading>
@@ -114,6 +116,8 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ id, title, leads, onL
                   fontWeight={500}
                   fontSize={{ base: '12px', md: '14px' }}
                   boxShadow="lg"
+                  overflow="hidden"
+                  whiteSpace="nowrap"
                   _hover={{
                     borderWidth: `1px`,
                     borderColor: 'form.primary-button',
@@ -121,7 +125,7 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ id, title, leads, onL
                     backgroundColor: '#ffffff'
                   }}
                 >
-                  {lead.content}
+                  {truncateString(lead.content, 15)}
                 </Box>
               )}
             </Draggable>
@@ -177,6 +181,13 @@ function dragReverseBlock(leads: LeadsState, setLeads: React.Dispatch<React.SetS
       [destination.droppableId]: destColumn
     })
   }
+}
+
+const truncateString = (str: string, maxLength: number): string => {
+  if (str.length <= maxLength) {
+    return str
+  }
+  return str.slice(0, maxLength) + '...'
 }
 
 export default LeadsPage
