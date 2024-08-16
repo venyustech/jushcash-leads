@@ -55,7 +55,7 @@ export const RegisterForm: React.FC = () => {
       <VStack spacing={4} align="stretch">
         <FormControl isInvalid={!!errors.fullName}>
           <FormLabel color="form.label" htmlFor="fullName">
-            Seu Nome Completo{' '}
+            Seu nome completo{' '}
             <Text as="span" color="red">
               *
             </Text>
@@ -66,8 +66,8 @@ export const RegisterForm: React.FC = () => {
             {...register('fullName')}
             bg="transparent"
             borderColor="form.label"
-            _hover={{ boxShadow: 'none', borderWidth: `2px`, borderColor: 'form.label-selected' }}
-            _focus={{ boxShadow: 'none', borderWidth: `2px`, borderColor: 'form.label-selected' }}
+            _hover={{ boxShadow: 'none', borderWidth: `1px`, borderColor: 'form.label-selected' }}
+            _focus={{ boxShadow: 'none', borderWidth: `1px`, borderColor: 'form.label-selected' }}
           />
           <FormErrorMessage>{errors.fullName?.message}</FormErrorMessage>
         </FormControl>
@@ -86,8 +86,8 @@ export const RegisterForm: React.FC = () => {
             {...register('email')}
             bg="transparent"
             borderColor="form.label"
-            _hover={{ boxShadow: 'none', borderWidth: `2px`, borderColor: 'form.label-selected' }}
-            _focus={{ boxShadow: 'none', borderWidth: `2px`, borderColor: 'form.label-selected' }}
+            _hover={{ boxShadow: 'none', borderWidth: `1px`, borderColor: 'form.label-selected' }}
+            _focus={{ boxShadow: 'none', borderWidth: `1px`, borderColor: 'form.label-selected' }}
           />
           <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
         </FormControl>
@@ -108,8 +108,8 @@ export const RegisterForm: React.FC = () => {
               {...register('password')}
               bg="transparent"
               borderColor="form.label"
-              _hover={{ boxShadow: 'none', borderWidth: `2px`, borderColor: 'form.label-selected' }}
-              _focus={{ boxShadow: 'none', borderWidth: `2px`, borderColor: 'form.label-selected' }}
+              _hover={{ boxShadow: 'none', borderWidth: `1px`, borderColor: 'form.label-selected' }}
+              _focus={{ boxShadow: 'none', borderWidth: `1px`, borderColor: 'form.label-selected' }}
             />
             <InputRightElement width="4.5rem">
               <IconButton
@@ -132,7 +132,7 @@ export const RegisterForm: React.FC = () => {
 
         <FormControl isInvalid={!!errors.confirmPassword}>
           <FormLabel color="form.label" htmlFor="confirmPassword">
-            Confirme sua Senha{' '}
+            Confirme sua senha{' '}
             <Text as="span" color="red">
               *
             </Text>
@@ -146,8 +146,8 @@ export const RegisterForm: React.FC = () => {
               {...register('confirmPassword')}
               bg="transparent"
               borderColor="form.label"
-              _hover={{ boxShadow: 'none', borderWidth: `2px`, borderColor: 'form.label-selected' }}
-              _focus={{ boxShadow: 'none', borderWidth: `2px`, borderColor: 'form.label-selected' }}
+              _hover={{ boxShadow: 'none', borderWidth: `1px`, borderColor: 'form.label-selected' }}
+              _focus={{ boxShadow: 'none', borderWidth: `1px`, borderColor: 'form.label-selected' }}
             />
             <InputRightElement width="4.5rem">
               <IconButton

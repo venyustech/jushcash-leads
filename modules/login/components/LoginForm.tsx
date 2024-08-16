@@ -20,7 +20,6 @@ import {
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
-import { useRouter } from 'next/navigation'
 import { LoginFormData } from '../types/indes'
 import { useLoginUser } from '../hooks/loginUser'
 
@@ -31,8 +30,8 @@ const LoginForm: React.FC = () => {
     handleSubmit,
     formState: { errors }
   } = useForm<LoginFormData>()
-  const userLogin = useLoginUser()
-  const onSubmit = (data: LoginFormData) => userLogin.mutate(data)
+  const useLogin = useLoginUser()
+  const onSubmit = (data: LoginFormData) => useLogin.mutate(data)
 
   return (
     <Flex
@@ -61,8 +60,8 @@ const LoginForm: React.FC = () => {
             {...register('email', { required: 'E-mail é obrigatório' })}
             bg="transparent"
             borderColor="form.label"
-            _hover={{ boxShadow: 'none', borderWidth: `2px`, borderColor: 'form.label-selected' }}
-            _focus={{ boxShadow: 'none', borderWidth: `2px`, borderColor: 'form.label-selected' }}
+            _hover={{ boxShadow: 'none', borderWidth: `1px`, borderColor: 'form.label-selected' }}
+            _focus={{ boxShadow: 'none', borderWidth: `1px`, borderColor: 'form.label-selected' }}
           />
           <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
         </FormControl>
@@ -83,8 +82,8 @@ const LoginForm: React.FC = () => {
               {...register('password', { required: 'Senha é obrigatória' })}
               bg="transparent"
               borderColor="form.label"
-              _hover={{ boxShadow: 'none', borderWidth: `2px`, borderColor: 'form.label-selected' }}
-              _focus={{ boxShadow: 'none', borderWidth: `2px`, borderColor: 'form.label-selected' }}
+              _hover={{ boxShadow: 'none', borderWidth: `1px`, borderColor: 'form.label-selected' }}
+              _focus={{ boxShadow: 'none', borderWidth: `1px`, borderColor: 'form.label-selected' }}
             />
             <InputRightElement width="4.5rem">
               <IconButton
@@ -111,7 +110,7 @@ const LoginForm: React.FC = () => {
           width="fit-content"
           _hover={{ cursor: 'pointer' }}
         >
-          <Link href="/register">Não possui conta? Inscrava-se</Link>
+          <Link href="/register">Não possui conta? Inscreva-se</Link>
         </FormLabel>
         <Button
           type="submit"
