@@ -1,5 +1,5 @@
 import { http, UnexpectedError } from '@/config'
-import { LoginFormData } from '../types/indes'
+import { LoginFormData } from '../types'
 
 export const fakeLoginUser = async (data: LoginFormData): Promise<LoginFormData> => {
   const url = `/users`

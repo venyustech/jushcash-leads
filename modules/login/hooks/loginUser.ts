@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { LoginFormData } from '../types/indes'
+import { LoginFormData } from '../types'
 import { fakeLoginUser } from '../services'
 import { userLoginStore } from '../store'
 

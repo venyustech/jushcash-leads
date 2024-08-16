@@ -20,7 +20,7 @@ import {
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
-import { LoginFormData } from '../types/indes'
+import { LoginFormData } from '../types'
 import { useLoginUser } from '../hooks/loginUser'
 
 const LoginForm: React.FC = () => {
