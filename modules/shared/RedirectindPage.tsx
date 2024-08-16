@@ -1,10 +1,10 @@
-import { Text } from '@chakra-ui/react'
+import { Spinner, Text } from '@chakra-ui/react'
 import { MainLayout } from './MainLayout'
 
 export const RedirectingPage = () => {
   return (
     <MainLayout>
-      <Text>Loading...</Text>
+      <Spinner p={6} mt={6} />
     </MainLayout>
   )
 }
