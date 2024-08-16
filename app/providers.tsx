@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const colors = {
   main: {
     primary: '#ececec',
-    secundary: '#f6f6f6'
+    secundary: '#ffffff'
   },
   form: {
     label: '#072854',

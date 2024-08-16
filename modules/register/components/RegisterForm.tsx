@@ -56,7 +56,7 @@ export const RegisterForm: React.FC = () => {
       <VStack spacing={4} align="stretch">
         <FormControl isInvalid={!!errors.fullName}>
           <FormLabel color="form.label" htmlFor="fullName">
-            Seu Nome Completo
+            Seu Nome Completo{' '}
             <Text as="span" color="red">
               *
             </Text>
@@ -75,7 +75,7 @@ export const RegisterForm: React.FC = () => {
 
         <FormControl isInvalid={!!errors.email}>
           <FormLabel color="form.label" htmlFor="email">
-            E-mail
+            E-mail{' '}
             <Text as="span" color="red">
               *
             </Text>
@@ -95,7 +95,7 @@ export const RegisterForm: React.FC = () => {
 
         <FormControl isInvalid={!!errors.password}>
           <FormLabel color="form.label" htmlFor="password">
-            Senha
+            Senha{' '}
             <Text as="span" color="red">
               *
             </Text>
@@ -133,7 +133,7 @@ export const RegisterForm: React.FC = () => {
 
         <FormControl isInvalid={!!errors.confirmPassword}>
           <FormLabel color="form.label" htmlFor="confirmPassword">
-            Confirme sua Senha
+            Confirme sua Senha{' '}
             <Text as="span" color="red">
               *
             </Text>
